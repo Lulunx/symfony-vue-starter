@@ -1,33 +1,16 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import { routes as auth } from "../views/auth/routes";
+import { routes as home } from "../views/home/routes";
+import { routes as sort } from "../views/sort/routes";
 
 Vue.use(VueRouter)
 
 const routes = [
-	{
-		path: '/',
-		name: 'Login',
-		component: () => import('../views/auth/Login.vue')
-	},
 
-	{
-		// ======================
-		// Full Layout
-		// ======================
-		path: '',
-		component: () => import('../components/layout/MainContainer.vue'),
-
-		// ======================
-		// Main routes / pages
-		// ======================
-		children: [
-			{
-				path: '/dashboard',
-				name: 'dashboard',
-				component: () => import('../views/Home.vue')
-			}
-		],
-	},
+	...auth,
+	...home,
+	...sort,
 
 	// Redirect to home page, if no match found
 	{
